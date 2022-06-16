@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'business_model.dart';
-
+import '../business_model.dart';
 
 class BuildForm extends StatefulWidget {
   const BuildForm({Key? key}) : super(key: key);
@@ -33,8 +32,13 @@ class _BuildFormState extends State<BuildForm> {
           const SizedBox(height: 16),
           buildMobileNumber(),
           const SizedBox(height: 16),
+          buildBusinessLocation(),
+          const SizedBox(
+            height: 16,
+          ),
           buildAddButton(),
           const SizedBox(height: 16),
+
           // buildImage(bytes1),
         ],
       ),
@@ -50,9 +54,10 @@ class _BuildFormState extends State<BuildForm> {
           bizModel.businessName = businessName;
           print(bizModel.businessName);
         },
-        decoration: const InputDecoration(
+        decoration: InputDecoration(
           labelText: "Business Name",
-          border: OutlineInputBorder(),
+          labelStyle: TextStyle(color: Theme.of(context).primaryColor),
+          border: const OutlineInputBorder(),
         ),
         validator: (value) {
           if (value!.isEmpty) {
@@ -61,6 +66,8 @@ class _BuildFormState extends State<BuildForm> {
           return null;
         },
       );
+  // Widget buildBusinessCategory() =>
+
   Widget buildPersonName() => TextFormField(
         onChanged: (value) {
           setState(() {
@@ -69,9 +76,10 @@ class _BuildFormState extends State<BuildForm> {
           bizModel.personName = personName;
           print(bizModel.personName);
         },
-        decoration: const InputDecoration(
+        decoration: InputDecoration(
           labelText: "Full Name",
-          border: OutlineInputBorder(),
+          labelStyle: TextStyle(color: Theme.of(context).primaryColor),
+          border: const OutlineInputBorder(),
         ),
         validator: (value) {
           if (value!.split(" ").isEmpty) {
@@ -88,9 +96,10 @@ class _BuildFormState extends State<BuildForm> {
           bizModel.businessNumber = businessNumber;
           print(bizModel.businessNumber);
         },
-        decoration: const InputDecoration(
+        decoration: InputDecoration(
+          labelStyle: TextStyle(color: Theme.of(context).primaryColor),
           labelText: "Mobile Number",
-          border: OutlineInputBorder(),
+          border: const OutlineInputBorder(),
         ),
         validator: (value) {
           // RegExp valRegExp = RegExp(r"^[0-9]+$");
@@ -100,6 +109,13 @@ class _BuildFormState extends State<BuildForm> {
           }
           return null;
         },
+      );
+  Widget buildBusinessLocation() => TextFormField(
+        decoration: InputDecoration(
+          labelText: "Business Location",
+          labelStyle: TextStyle(color: Theme.of(context).primaryColor),
+          border: const OutlineInputBorder(),
+        ),
       );
   Widget buildAddButton() => Builder(
         builder: (context) => ElevatedButton(
