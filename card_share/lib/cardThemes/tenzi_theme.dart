@@ -1,8 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:card_share/business_model.dart';
 
+// typedef void StringCallback(String val);
+
 class TenziStyle extends StatefulWidget {
-  const TenziStyle({Key? key}) : super(key: key);
+  final String businessName;
+  final String businessType;
+  final String businessCategory;
+  final String personName;
+  final String businessNumber;
+  final String ownerEmail;
+  final String businessLocation;
+  final String businessCity;
+  final Function(String) callback;
+
+  const TenziStyle({
+    Key? key,
+    required this.businessName,
+    required this.businessType,
+    required this.businessCategory,
+    required this.personName,
+    required this.businessNumber,
+    required this.ownerEmail,
+    required this.businessLocation,
+    required this.businessCity,
+    required this.callback,
+  }) : super(key: key);
 
   @override
   State<TenziStyle> createState() => _TenziStyleState();
@@ -10,13 +33,6 @@ class TenziStyle extends StatefulWidget {
 
 class _TenziStyleState extends State<TenziStyle> {
   BusinessModel bizModel = BusinessModel();
-  String businessName = "TenziBooks";
-  String businessCategory = "FinTech COmpany";
-  String personName = "Jarib Wetshi";
-  String businessNumber = "0745036752";
-  String businessLocation = "Nairobi";
-  String businessCity = "Nairobi";
-  String businessCode = "00100";
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +42,16 @@ class _TenziStyleState extends State<TenziStyle> {
     const double cardPad = 20;
     const double cardMargin = 10;
 
-    return GestureDetector(
-      onTap: null,
-      onDoubleTap: null,
+    return InkWell(
+      splashColor: Colors.grey,
+      onTap: () {
+        const snackBar = SnackBar(content: Text('Tapped on tenzi theme'));
+
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        print("Tapped on tenzi theme");
+        widget.callback("tenziStyle");
+      },
+      // onDoubleTap: null,
       child: Container(
         padding: const EdgeInsets.all(cardPad),
         margin: const EdgeInsets.fromLTRB(cardMargin, 0, 10, cardMargin),
@@ -51,7 +74,7 @@ class _TenziStyleState extends State<TenziStyle> {
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 2),
               child: Text(
-                businessName,
+                widget.businessName,
                 style: const TextStyle(
                     color: Color.fromARGB(255, 206, 147, 216),
                     fontFamily: "Montserrat",
@@ -62,7 +85,7 @@ class _TenziStyleState extends State<TenziStyle> {
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
               child: Text(
-                businessCategory,
+                widget.businessCategory,
                 style: const TextStyle(
                     color: Color.fromARGB(255, 206, 147, 216),
                     fontFamily: "Montserrat",
@@ -72,7 +95,7 @@ class _TenziStyleState extends State<TenziStyle> {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 25, 0, 2),
-              child: Text(personName,
+              child: Text(widget.personName,
                   style: const TextStyle(
                     color: Color.fromARGB(255, 206, 147, 216),
                     fontSize: 13,
@@ -81,7 +104,7 @@ class _TenziStyleState extends State<TenziStyle> {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 5, 0, 20),
-              child: Text(businessNumber,
+              child: Text(widget.businessNumber,
                   style: const TextStyle(
                     color: Color.fromARGB(255, 206, 147, 216),
                     fontSize: 13,
@@ -101,7 +124,7 @@ class _TenziStyleState extends State<TenziStyle> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
                   child: Text(
-                    businessLocation,
+                    widget.businessLocation,
                     style: const TextStyle(
                       fontSize: 10,
                       color: Color.fromARGB(255, 206, 147, 216),

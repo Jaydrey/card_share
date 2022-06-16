@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'business_form.dart';
 
-
 class BusinessFormPage extends StatefulWidget {
   final String barTitle;
-  const BusinessFormPage({Key? key, required this.barTitle}) : super(key: key);
+  final String selectedCard;
+  const BusinessFormPage(
+      {Key? key, required this.barTitle, required this.selectedCard})
+      : super(key: key);
   @override
   State<BusinessFormPage> createState() => _BusinessFormPageState();
 }
@@ -25,7 +27,10 @@ class _BusinessFormPageState extends State<BusinessFormPage> {
             buildFirstHeading(),
             buildSubHeading(),
             // the business form imported from the business_form module
-            const BuildForm(),
+            BuildForm(
+              barTitle: widget.barTitle,
+              selectedCard: widget.selectedCard,
+            ),
           ],
         ),
       )),

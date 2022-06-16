@@ -1,6 +1,8 @@
+import 'package:card_share/cardThemes/elipsis_theme.dart';
 import 'package:flutter/material.dart';
 import 'cardThemes/tenzi_theme.dart';
 import 'form_page/build_form.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -28,6 +30,16 @@ class BusinessCard extends StatefulWidget {
 }
 
 class _BusinessCardState extends State<BusinessCard> {
+  String businessName = "TenziBooks";
+  String businessCategory = "FinTech COmpany";
+  String personName = "Owner Name";
+  String businessNumber = "0745036752";
+  String businessLocation = "Nairobi";
+  String businessCity = "Nairobi";
+  String businessCode = "00100";
+  String ownerEmail = "Owner Email";
+  String _string = "";
+
   @override
   Widget build(BuildContext context) {
     double screenHeightPadding = MediaQuery.of(context).size.height * .15;
@@ -83,10 +95,52 @@ class _BusinessCardState extends State<BusinessCard> {
                 padding: const EdgeInsets.fromLTRB(20.0, 10, 20, 0),
                 child: Row(
                   // where the card theme widgets lie
-                  children: const <Widget>[
-                    TenziStyle(),
-                    TenziStyle(),
-                    TenziStyle()
+                  children: <Widget>[
+                    TenziStyle(
+                      businessName: businessName,
+                      businessType: businessName,
+                      businessCategory: businessCategory,
+                      personName: personName,
+                      businessNumber: businessNumber,
+                      ownerEmail: ownerEmail,
+                      businessLocation: businessLocation,
+                      businessCity: businessCity,
+                      callback: (value) {
+                        setState(() {
+                          _string = value;
+                        });
+                      },
+                    ),
+                    ElipsiStyle(
+                      businessName: businessName,
+                      businessType: businessName,
+                      businessCategory: businessCategory,
+                      personName: personName,
+                      businessNumber: businessNumber,
+                      ownerEmail: ownerEmail,
+                      businessLocation: businessLocation,
+                      businessCity: businessCity,
+                      callback: (value) {
+                        setState(() {
+                          _string = value;
+                        });
+                      },
+                    ),
+                    TenziStyle(
+                      businessName: businessName,
+                      businessType: businessName,
+                      businessCategory: businessCategory,
+                      personName: personName,
+                      businessNumber: businessNumber,
+                      ownerEmail: ownerEmail,
+                      businessLocation: businessLocation,
+                      businessCity: businessCity,
+                      callback: (value) {
+                        setState(() {
+                          _string = value;
+                        });
+                      },
+                    )
                   ],
                 ),
               ),
@@ -98,8 +152,10 @@ class _BusinessCardState extends State<BusinessCard> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                BusinessFormPage(barTitle: widget.barTitle)));
+                            builder: (context) => BusinessFormPage(
+                                  barTitle: widget.barTitle,
+                                  selectedCard: _string,
+                                )));
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -123,4 +179,3 @@ class _BusinessCardState extends State<BusinessCard> {
     );
   }
 }
-
